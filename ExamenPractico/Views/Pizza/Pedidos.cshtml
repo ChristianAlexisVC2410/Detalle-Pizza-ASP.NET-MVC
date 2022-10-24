@@ -1,0 +1,145 @@
+﻿@model ExamenPractico.Models.Pizza
+@{
+    ViewBag.Title = "Pedidos";
+}
+
+
+<h2>Pedidos</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="">
+                <div class="">
+                    <form method="post" action="/Pizza/Pedidos">
+                        <div class="form-group">
+                      
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group " style="text-align: left; ">
+                                        <div>
+                                            <label class="" for="Tamanio">Tamaño de Pizza</label>
+                                        </div>
+                                        <div>
+                                            <label>Chica $40</label> <input id="rt" name="Tamanio" type="radio" value="Chica" class="radio-inline" checked>
+                                        </div>
+
+                                        <div>
+                                            <label>Mediana $80</label> <input id="rt" name="Tamanio" type="radio" value="Mediana" class="radio-inline">
+                                        </div>
+
+                                        <div>
+                                            <label>Grande $120</label> <input id="rt" name="Tamanio" type="radio" value="Grande" class="radio-inline">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group " style="text-align: left; ">
+                                        <div>
+                                            <label class="" for="">Ingredientes</label>
+                                        </div>
+                                        <div>
+                                            <label>Jamon $10</label> <input id="" name="Jamon" type="checkbox" value="Jamon" class="form-check-input" checked>
+
+                                        </div>
+                                        <div>
+                                            <label>Piña $10</label> <input id="" name="Pina" type="checkbox" value="Piña" class="form-check-input">
+                                        </div>
+                                        <div>
+                                            <label>Chapiñones $10</label> <input id="" name="Champinion" type="checkbox" value="Champiñon" class="form-check-input">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group " style="text-align: left; ">
+                                        <label for="NumeroPizza">Número de Pizzas</label>
+                                        <input id="Numero" name="NumeroPizza" maxlength="40" type="number" value="" class="form-control" required min="1">
+                                        <div class="" style="margin-top: 15px">
+                                            <button class="btn btn-warning" type="submit" name="btnAgregar">Agregar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Tamaño</td>
+                        <td>Ingrediente</td>
+                        <td>Numero de Pizzas</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.tablaPedidos == null)
+                    {
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (var item in ViewBag.tablaPedidos)
+                        {
+                            <tr>
+                                @foreach (var registro in item.Split(','))
+                                {
+                                    <td>@registro</td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div class="">
+                <form method="post" action="@Url.Action("Mensaje","Pizza")">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group col-md-12" style="text-align: left; ">
+                                <label for="Nombre">Nombre</label>
+                                <input id="Nombretxt" name="Nombre" maxlength="40" type="text" value="" class="form-control" required >
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group " style="text-align: left; ">
+                                <label for="Direccion">Dirección</label>
+                                <input id="Direcciontxt" name="Domicilio" maxlength="40" type="text" value="" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group " style="text-align: left; ">
+                                <label for="Telefono">Teléfono</label>
+                                <input id="Telefonotxt" name="Telefono" maxlength="40" type="number" value="" class="form-control" required min="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" style="margin-top: 15px">
+                        <button class="btn btn-warning" type="submit" name="btnTerminar">Terminar</button>
+                    </div>
+                </form>
+            </div>
+        
+        </div>
+    </div>
+
+</div>
+

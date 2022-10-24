@@ -1,0 +1,63 @@
+﻿@model ExamenPractico.Models.Pizza
+
+@{
+    ViewBag.Title = "DetallePedido";
+}
+
+<h2>DetallePedido</h2>
+<h2>@ViewBag.Nombre</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Tamaño</td>
+                        <td>Ingrediente</td>
+                        <td>Numero de Pizzas</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.temp == null)
+                    {
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                    else
+                    {
+
+                        foreach (var item in ViewBag.temp)
+                        {
+                            <tr>
+                                @foreach (var registro in item.Split(','))
+                                {
+                                    <td>@registro</td>
+                                }
+                            </tr>
+                        }
+                    }
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total: </td>
+                    <td> $ @ViewBag.Total</td>
+                  
+                </tr>
+                </tbody>
+            </table>
+            <form method="post" action="@Url.Action("MensajeImpreso","Pizza")">
+                <button class="btn btn-primary" type="submit">Imprimir</button>
+            </form>
+        </div>
+    </div>
+</div>

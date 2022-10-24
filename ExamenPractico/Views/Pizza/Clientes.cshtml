@@ -1,0 +1,114 @@
+﻿@model ExamenPractico.Models.Pizza
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ventas</title>
+</head>
+<body>
+    <h1>Listado de ventas</h1>
+    <div class=" row">
+        <div class="col-sm-6">
+            <form action="/Pizza/Clientes" method="post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <select class="form-control" name="per">
+                            <option>Selecciona...</option>
+                            <option value="lunes">Lunes</option>
+                            <option value="martes">Martes</option>
+                            <option value="miércoles">Miercoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                            <option value="sábado">Sabado</option>
+                            <option value="domingo">Domingo</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success" name="name" value=""> Día de la semana </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <form action="/Pizza/Clientes" method="post">
+                <div class="row">
+                    <div class="">
+                        <select class="form-control" name="per">
+                            <option>Selecciona...</option>
+                            <option value="enero">Enero</option>
+                            <option value="febrero">Febrero</option>
+                            <option value="marzo">Marzo</option>
+                            <option value="abril">Abril</option>
+                            <option value="mayo">Mayo</option>
+                            <option value="junio">Junio</option>
+                            <option value="julio">Julio</option>
+                            <option value="agosto">Agosto</option>
+                            <option value="septiembre">Septiembre</option>
+                            <option value="octubre">Octubre</option>
+                            <option value="noviembre">Noviembre</option>
+                            <option value="diciembre">Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-success" name="name" value="">Buscar por mes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      
+    </div>
+    <br />
+    <div class="col">
+        <table class=" table table-hover table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Sub-Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.tablaCliente == null)
+                {
+
+                    <tr>
+                       
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+                else
+                {
+
+                    foreach (var item in ViewBag.tablaCliente)
+                    {
+                        <tr>
+                            @foreach (var registro in item.Split(','))
+                            {
+                                <td>@registro</td>
+                            }
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+            <tr>
+                   <td></td>
+                <td></td>
+                <td></td>
+                <td>Total :</td>
+                <td>$ @ViewBag.Totalidad</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
